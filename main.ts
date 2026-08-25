@@ -3,42 +3,45 @@ namespace SpriteKind {
     export const Tut2 = SpriteKind.create()
     export const Tut3 = SpriteKind.create()
     export const SpeedBoostPowerUp = SpriteKind.create()
+    export const PowerUpTut = SpriteKind.create()
+    export const Trapdoor = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Temp_Player.vy == 0) {
         Temp_Player.vy = -200
     }
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.SpeedBoostPowerUp, function (sprite, otherSprite) {
-    sprites.destroy(Speed_Boost)
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Tut3, function (sprite, otherSprite) {
-    game.splash("Press D to walk left")
-    sprites.destroy(Tut3sprite)
+	
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Tut1, function (sprite, otherSprite) {
-    game.splash("Press D to walk right")
-    sprites.destroy(Tut1sprite)
+	
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUpTut, function (sprite, otherSprite) {
+    sprites.destroy(Speed_Boost)
+    game.splash("Bottles give you power ups")
+    controller.moveSprite(Temp_Player, 240, 0)
+    pause(5000)
+    controller.moveSprite(Temp_Player, 120, 0)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Trapdoor, function (sprite, otherSprite) {
+    Temp_Player.setPosition(122, 500)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Tut2, function (sprite, otherSprite) {
-    game.splash("Press W to jump")
-    sprites.destroy(Tut2sprite)
+	
 })
 let Speed_Boost: Sprite = null
-let Tut3sprite: Sprite = null
-let Tut2sprite: Sprite = null
-let Tut1sprite: Sprite = null
 let Temp_Player: Sprite = null
 scene.setBackgroundColor(13)
-Temp_Player = sprites.create(assets.image`Temp Sprite`, SpriteKind.Player)
+Temp_Player = sprites.create(assets.image`Vamp 1`, SpriteKind.Player)
 Temp_Player.setPosition(17, 120)
 scene.cameraFollowSprite(Temp_Player)
 controller.moveSprite(Temp_Player, 120, 0)
 tiles.setCurrentTilemap(tilemap`Test tilemap`)
 Temp_Player.ay = 590
-Tut1sprite = sprites.create(assets.image`Tut1`, SpriteKind.Tut1)
+let Tut1sprite = sprites.create(assets.image`Tut1`, SpriteKind.Tut1)
 Tut1sprite.setPosition(17, 120)
-Tut2sprite = sprites.create(img`
+let Tut2sprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -57,7 +60,7 @@ Tut2sprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Tut2)
 Tut2sprite.setPosition(190, 145)
-Tut3sprite = sprites.create(img`
+let Tut3sprite = sprites.create(img`
     ...................................
     ...................................
     ...................................
@@ -93,5 +96,24 @@ Speed_Boost = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.SpeedBoostPowerUp)
+    `, SpriteKind.PowerUpTut)
 Speed_Boost.setPosition(427, 60)
+let Trapdoor = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    e e e e e e d e e d e e e e e e 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Trapdoor)
+Trapdoor.setPosition(736, 142)
