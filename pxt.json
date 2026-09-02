@@ -18,18 +18,18 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "4.0.14",
+        "target": "4.1.17",
         "targetId": "arcade"
     },
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "blocksprj",
+    "preferredEditor": "tsprj",
     "palette": [
         "#000000",
         "#FFFFFF",
         "#FF2121",
-        "#FF93C4",
+        "#FF5252",
         "#940000",
         "#D2AFAD",
         "#AB6A63",
