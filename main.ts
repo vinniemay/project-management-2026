@@ -33,6 +33,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.tutbutton1, function (sprite, ot
     pause(5000)
     questtut5.setImage(assets.image`text5`)
     questtut5.setPosition(122, 462)
+    pause(5000)
+    questtut5.setImage(assets.image`question 1`)
+    questtut5.setPosition(122, 443)
+    questtut6 = sprites.create(assets.image`myImage0`, SpriteKind.questionTUT)
+    questtut6.setPosition(122, 467)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Temp_Player.setImage(assets.image`Vamp Main LEFT proper`)
@@ -66,6 +71,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.tutbutton2, function (sprite, ot
     sprites.destroy(button)
     sprites.destroy(press)
 })
+let questtut6: Sprite = null
 let questtut5: Sprite = null
 let press: Sprite = null
 let button: Sprite = null
