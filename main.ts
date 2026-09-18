@@ -9,6 +9,10 @@ namespace SpriteKind {
     export const tutbutton1 = SpriteKind.create()
     export const press = SpriteKind.create()
     export const tutbutton2 = SpriteKind.create()
+    export const tutbutton3 = SpriteKind.create()
+    export const answer = SpriteKind.create()
+    export const correctanswer = SpriteKind.create()
+    export const correct = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Temp_Player.vy == 0) {
@@ -37,10 +41,32 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.tutbutton1, function (sprite, ot
     questtut5.setImage(assets.image`question 1`)
     questtut5.setPosition(122, 443)
     questtut6 = sprites.create(assets.image`myImage0`, SpriteKind.questionTUT)
-    questtut6.setPosition(122, 467)
+    questtut6.setPosition(122, 463)
+    pause(1000)
+    questtut7 = sprites.create(assets.image`button`, SpriteKind.answer)
+    questtut7.setPosition(65, 505)
+    answer1 = sprites.create(assets.image`answer1`, SpriteKind.answer)
+    answer1.setPosition(65, 482)
+    pause(500)
+    questtut8 = sprites.create(assets.image`button`, SpriteKind.correctanswer)
+    questtut8.setPosition(174, 505)
+    answer2 = sprites.create(assets.image`answer2`, SpriteKind.correctanswer)
+    answer2.setPosition(174, 482)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Temp_Player.setImage(assets.image`Vamp Main LEFT proper`)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.correctanswer, function (sprite, otherSprite) {
+    sprites.destroy(questtut5)
+    sprites.destroy(questtut6)
+    sprites.destroy(questtut7)
+    sprites.destroy(questtut8)
+    sprites.destroy(answer1)
+    sprites.destroy(answer2)
+    correct = sprites.create(assets.image`correct`, SpriteKind.correct)
+    correct.setPosition(122, 463)
+    correct2 = sprites.create(assets.image`myImage0`, SpriteKind.correct)
+    correct2.setPosition(122, 463)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Tut3, function (sprite, otherSprite) {
     game.splash("Press D to walk left")
@@ -71,6 +97,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.tutbutton2, function (sprite, ot
     sprites.destroy(button)
     sprites.destroy(press)
 })
+let correct2: Sprite = null
+let correct: Sprite = null
+let answer2: Sprite = null
+let questtut8: Sprite = null
+let answer1: Sprite = null
+let questtut7: Sprite = null
 let questtut6: Sprite = null
 let questtut5: Sprite = null
 let press: Sprite = null
