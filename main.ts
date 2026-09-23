@@ -11,13 +11,17 @@ namespace SpriteKind {
     export const tutbutton2 = SpriteKind.create()
     export const tutbutton3 = SpriteKind.create()
     export const answer = SpriteKind.create()
-    export const correctanswer = SpriteKind.create()
+    export const tutut = SpriteKind.create()
     export const correct = SpriteKind.create()
+    export const tp1 = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Temp_Player.vy == 0) {
         Temp_Player.vy = -200
     }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.tp1, function (sprite, otherSprite) {
+    Temp_Player.setPosition(595, 405)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.tutbutton1, function (sprite, otherSprite) {
     sprites.destroy(button)
@@ -43,18 +47,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.tutbutton1, function (sprite, ot
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Temp_Player.setImage(assets.image`Vamp Main LEFT proper`)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.correctanswer, function (sprite, otherSprite) {
-    sprites.destroy(questtut5)
-    sprites.destroy(questtut6)
-    sprites.destroy(questtut7)
-    sprites.destroy(questtut8)
-    sprites.destroy(answer1)
-    sprites.destroy(answer2)
-    correct = sprites.create(assets.image`correct`, SpriteKind.correct)
-    correct.setPosition(357, 463)
-    correct2 = sprites.create(assets.image`myImage0`, SpriteKind.correct)
-    correct2.setPosition(357, 463)
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Tut3, function (sprite, otherSprite) {
     game.splash("Press D to walk left")
     sprites.destroy(Tut3sprite)
@@ -76,6 +68,23 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUpTut, function (sprite, ot
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Trapdoor, function (sprite, otherSprite) {
     Temp_Player.setPosition(114, 483)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.tutut, function (sprite, otherSprite) {
+    sprites.destroy(questtut7)
+    sprites.destroy(questtut8)
+    sprites.destroy(answer1)
+    sprites.destroy(answer2)
+    sprites.destroy(newnew)
+    sprites.destroy(questtut5)
+    questtut6.setImage(assets.image`explanation`)
+    questtut6.setPosition(364, 463)
+    _new = sprites.create(assets.image`correct`, SpriteKind.Player)
+    _new.setPosition(363, 443)
+    pause(2000)
+    questut9 = sprites.create(assets.image`button`, SpriteKind.tp1)
+    questut9.setPosition(413, 505)
+    _continue = sprites.create(assets.image`press to continue`, SpriteKind.tp1)
+    _continue.setPosition(417, 482)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Tut2, function (sprite, otherSprite) {
     game.splash("Press W to jump")
     sprites.destroy(Tut2sprite)
@@ -84,14 +93,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.tutbutton2, function (sprite, ot
     sprites.destroy(button)
     sprites.destroy(press)
 })
-let correct2: Sprite = null
-let correct: Sprite = null
+let _continue: Sprite = null
+let questut9: Sprite = null
+let _new: Sprite = null
+let questtut5: Sprite = null
 let answer2: Sprite = null
 let questtut8: Sprite = null
 let answer1: Sprite = null
 let questtut7: Sprite = null
 let questtut6: Sprite = null
-let questtut5: Sprite = null
+let newnew: Sprite = null
 let press: Sprite = null
 let button: Sprite = null
 let Question1Tut4: Sprite = null
@@ -133,15 +144,15 @@ button = sprites.create(assets.image`button`, SpriteKind.tutbutton1)
 button.setPosition(174, 505)
 press = sprites.create(assets.image`press to continue`, SpriteKind.press)
 press.setPosition(178, 482)
-questtut5 = sprites.create(assets.image`question 1`, SpriteKind.questionTUT)
-questtut5.setPosition(357, 443)
+newnew = sprites.create(assets.image`question 1`, SpriteKind.questionTUT)
+newnew.setPosition(363, 443)
 questtut6 = sprites.create(assets.image`myImage0`, SpriteKind.questionTUT)
-questtut6.setPosition(357, 463)
+questtut6.setPosition(363, 463)
 questtut7 = sprites.create(assets.image`button`, SpriteKind.answer)
 questtut7.setPosition(303, 505)
 answer1 = sprites.create(assets.image`answer1`, SpriteKind.answer)
 answer1.setPosition(303, 482)
-questtut8 = sprites.create(assets.image`button`, SpriteKind.correctanswer)
-questtut8.setPosition(412, 505)
-answer2 = sprites.create(assets.image`answer2`, SpriteKind.correctanswer)
-answer2.setPosition(412, 482)
+questtut8 = sprites.create(assets.image`button`, SpriteKind.tutut)
+questtut8.setPosition(417, 505)
+answer2 = sprites.create(assets.image`answer2`, SpriteKind.answer)
+answer2.setPosition(417, 482)
